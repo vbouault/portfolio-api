@@ -17,7 +17,7 @@ class ContactController {
       }
         const data = await Contact.create(req.body);
         await Mailer.sendMail(req.body);
-        res.status(201).send({ data });
+        res.status(201).send(data);
     } catch (err) {
       res.status(500).send({
         errorMessage: err.message || 'Some error occurred while creating the contact.'
