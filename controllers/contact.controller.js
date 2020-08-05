@@ -1,4 +1,5 @@
 const Contact = require('../models/contact.model.js');
+const Mailer = require('../services/mailer.js');
 
 class ContactController {
   static async create (req, res) {
@@ -15,6 +16,7 @@ class ContactController {
         return res.status(400).send({ errorMessage: 'Name can not be empty!' });
       }
         const data = await Contact.create(req.body);
+        await Mailer.sendMail(req.body);
         res.status(201).send({ data });
     } catch (err) {
       res.status(500).send({
