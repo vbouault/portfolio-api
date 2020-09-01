@@ -2,10 +2,18 @@ const nodemailer = require('nodemailer');
 
 class mailer {
   static async sendMail (body) {
-    const outputUser = `Bonjour ${body.name}`;
-    const outputAdmin = `${body.message}`;
-
-    console.log(body)
+    const outputUser = `
+    <p>Bonjour ${body.name},</p>
+    <p>je vous remercie de votre intérêt, j'ai bien reçu votre message et je vous répondrai au plus vite.</p>
+    <p>Cordialement,</p><br>
+    <p>Vianney Bouault</p>
+    <p>06 58 37 82 06</p>
+    `;
+    const outputAdmin = `
+    <p>Message : ${body.message}</p>
+    <p>Email : ${body.email}</p>
+    <p>Nom : ${body.name}</p>
+    `;
 
     const transporter = nodemailer.createTransport({
       service: 'gmail',
